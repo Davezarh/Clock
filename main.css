@@ -1,0 +1,15 @@
+html
+{
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+*, ::after, ::before 
+{
+    box-sizing: inherit;
+}
+.Date{
+    font-size: 20px;
+}
+.Date__Clock{
+    font-size: 20px;
+}
