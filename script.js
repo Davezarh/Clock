@@ -31,8 +31,11 @@ const getLocation = () => {
         navigator.geolocation.getCurrentPosition(position => {
         let latitude = position.coords.latitude;
         let longtiude = position.coords.longitude;
-    })
+         fetch(`https://eu1.locationiq.com/v1/reverse.php?key=pk.5d92a33884eeadee31093ffee72e312b&lat=${latitude}&lon=${longtiude}&format=json`)
+            .then(response => response.json())
+            .then(data => document.querySelector(".Date__Location").innerText = data.display_name)
+    })  
 }
-
-showTime();
-showDate();
+getLocation()
+//showTime();
+//showDate();
