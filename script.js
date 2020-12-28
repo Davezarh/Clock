@@ -32,10 +32,19 @@ const getLocation = () => {
         let latitude = position.coords.latitude;
         let longtiude = position.coords.longitude;
          fetch(`https://eu1.locationiq.com/v1/reverse.php?key=pk.5d92a33884eeadee31093ffee72e312b&lat=${latitude}&lon=${longtiude}&format=json`)
-            .then(response => response.json())
-            .then(data => document.querySelector(".Date__Location").innerText = data.display_name)
+            .then(response => {
+                if(!response.ok){
+                  throw new Error(response.status)
+                } 
+                return response.json()
+                })
+             .then(data => document.querySelector(".Date__Location").innerText = data.display_name) 
+             .catch(error => {
+                 console.error(error)
+                 document.querySelector(".Date__Location").innerText = (`Oops... Coś poszło nie tak \ud83e\udd2f Sprawdź, czy masz połaczenie z internetem`)
+                })
     })  
 }
-getLocation()
+getLocation() 
 //showTime();
-//showDate();
+showDate();
