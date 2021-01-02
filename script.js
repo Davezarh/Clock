@@ -28,7 +28,7 @@ const showDate = () => {
     document.querySelector(".Date").innerText = today
 }
 const getLocation = () => {
-    navigator.geolocation.getCurrentPosition(position => {
+    document.querySelector(".Date__button").addEventListener ("click", () => { navigator.geolocation.getCurrentPosition(position => {
     let latitude = position.coords.latitude;
     let longtiude = position.coords.longitude;
         fetch(`https://eu1.locationiq.com/v1/reverse.php?key=pk.5d92a33884eeadee31093ffee72e312b&lat=${latitude}&lon=${longtiude}&format=json`)
@@ -43,10 +43,11 @@ const getLocation = () => {
                     document.querySelector(".Date__button").addEventListener("click", () => {
                     document.querySelector(".Date__Location").innerText =  
                     (`Twoja lokalizacja:
-                    Miasto: ${userAddres.city}
-                    Ulica: ${userAddres.city_district}
+                    Miasto: ${userAddres.city || userAddres.hamlet}
+                    Ulica: ${userAddres.city_district || userAddres.neighbourhood }
                     Kraj: ${userAddres.country} 
-                    `)}
+                    `)},
+                    console.log(data),
                 )}
             )
             .catch(error => {                                                                     
@@ -54,8 +55,8 @@ const getLocation = () => {
                 document.querySelector(".Date__button").addEventListener("click", () => {                                                        
                 document.querySelector(".Date__Location").innerText = (`Oops... Coś poszło nie tak \ud83e\udd2f Sprawdź, czy masz połaczenie z internetem`)})
                 })
-    })  
+    })}) 
 }
 getLocation() 
-//showTime();
+showTime();
 showDate();
