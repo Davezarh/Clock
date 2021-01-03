@@ -28,16 +28,15 @@ const showDate = () => {
     document.querySelector(".Date").innerText = today
 }
 const getLocation = () => {
-    document.querySelector(".Date__button").addEventListener ("click", () => { navigator.geolocation.getCurrentPosition(succesCallBack,errorCallBack)
+    document.querySelector(".Date__button").addEventListener ("click", () => { navigator.geolocation.getCurrentPosition(successCallBack,errorCallBack)
     function errorCallBack(error){
         if(error.code == error.PERMISSION_DENIED){
             document.querySelector(".Date__Location").innerText = ("Nie pozwoliłeś na pobranie twojej lokalizacji 😢")
         }
     }
-
-    function succesCallBack(position){
-     let latitude = position.coords.latitude;
-     let longtiude = position.coords.longitude;
+    function successCallBack(position){
+     const latitude = position.coords.latitude;
+     const longtiude = position.coords.longitude;
         fetch(`https://eu1.locationiq.com/v1/reverse.php?key=pk.5d92a33884eeadee31093ffee72e312b&lat=${latitude}&lon=${longtiude}&format=json`)
             .then(response => {
                 if(!response.ok){
@@ -47,19 +46,16 @@ const getLocation = () => {
                 })
             .then(data => {  
                 const {country_code,state,suburb,county,address29,road,...userAddres} = data.address;   
-                    document.querySelector(".Date__button").addEventListener("click", () => {
                     document.querySelector(".Date__Location").innerText =  
                     (`Twoja lokalizacja:
                     Miasto: ${userAddres.city || userAddres.hamlet}
                     Ulica: ${userAddres.city_district || userAddres.neighbourhood }
                     Kraj: ${userAddres.country} 
-                    `)},
-                )}
-            )
+                    `)
+            })
             .catch(error => {                                                                  
-                console.error(error)
-                document.querySelector(".Date__button").addEventListener("click", () => {                                                        
-                document.querySelector(".Date__Location").innerText = (`Oops... Coś poszło nie tak \ud83e\udd2f Sprawdź, czy masz połaczenie z internetem`)})
+                console.error(error)                                                     
+                document.querySelector(".Date__Location").innerText = (`Oops... Coś poszło nie tak \ud83e\udd2f Sprawdź, czy masz połaczenie z internetem`)
                 })
     }})} 
 
