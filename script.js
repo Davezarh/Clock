@@ -21,11 +21,8 @@ let showTime = () => {
 }
 const showDate = () => {
     const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth()+1;
-    const dayNumeric = date.getDate();
-    const today = `${dayNumeric}.${month}.${year}`
-    document.querySelector(".Date").innerText = today
+    const newDate =  date.toLocaleDateString("en-US",{weekday:"long", month:"long", day:"numeric",year:"numeric"})
+    document.querySelector(".Date").innerText = newDate
 }
 
 const getLocation = () => {  
@@ -64,10 +61,9 @@ const getLocation = () => {
                     const {country_code,state,suburb,county,address29,...userAddres} = data.address;   
                     location.innerText =  
                     (`Twoja lokalizacja:
-                    Miasto: ${userAddres.city || userAddres.hamlet}
-                    Ulica: ${userAddres.city_district || userAddres.neighbourhood || userAddres.road }
-                    Kraj: ${userAddres.country} 
-                    `)
+                    ${userAddres.city || userAddres.hamlet}, ul ${userAddres.city_district || userAddres.neighbourhood || userAddres.road }, ${userAddres.country} 
+                `)
+                    console.log(data)
                     button.remove()
                  })
                     .catch(error => {                                                                  
