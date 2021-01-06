@@ -39,9 +39,11 @@ const getLocation = () => {
             switch(error.code){
                 case error.PERMISSION_DENIED:
                     location.innerText = ("Nie pozwoliłeś na pobranie twojej lokalizacji 😢")
+                    button.remove()
                 break; 
                 case error.POSITION_UNAVAILABLE:
-                    location.innerText = ("Nie mogę pobrać informacji o lokalizacji, przykro nam 😢")     
+                    location.innerText = ("Nie mogę pobrać informacji o lokalizacji, przykro nam 😢") 
+                    button.remove()    
                 break; 
                 }
         }
@@ -60,15 +62,14 @@ const getLocation = () => {
                 .then(data => {  
                     const {country_code,state,suburb,county,address29,...userAddres} = data.address;   
                     location.innerText =  
-                    (`Twoja lokalizacja:
-                    ${userAddres.city || userAddres.hamlet}, ul ${userAddres.city_district || userAddres.neighbourhood || userAddres.road }, ${userAddres.country} 
-                `)
+                    (`${userAddres.city || userAddres.hamlet}, ul ${userAddres.city_district || userAddres.neighbourhood || userAddres.road }, ${userAddres.country}`)
                     console.log(data)
                     button.remove()
                  })
                     .catch(error => {                                                                  
                          console.error(error)                                                     
                          location.innerText = (`Oops... Coś poszło nie tak \ud83e\udd2f Sprawdź, czy masz połaczenie z internetem`)
+                         button.remove()
                     })
         }
 
