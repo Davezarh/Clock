@@ -1,0 +1,17 @@
+html
+{
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+*, ::after, ::before 
+{
+    box-sizing: inherit;
+}
+.main{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:  linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(233,9,9,1) 0%, rgba(0,212,255,1) 100%);
+}
