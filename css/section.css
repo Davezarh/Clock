@@ -4,7 +4,7 @@
     justify-content:space-evenly;
     color: #fff;
     background: #10101E;
-    width: 640px;
+    max-width: 640px;
     padding: 15px 10px;
     box-shadow: 1px 1px 10px 1px black;
     border-radius: 5px;
@@ -26,6 +26,7 @@
 }
 .section__Clock{
     display:flex;  
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
     color:white;
@@ -36,7 +37,8 @@
 .section__Location{
     font-size:33px;
     font-weight: 600;
-    letter-spacing: 3px;
+    letter-spacing:3px;
+    text-align: center;
 }
 .section__Button{
     display:flex;
@@ -44,4 +46,22 @@
     align-self:flex-start;
     flex-shrink:2;
     order:-1;
+}
+@media(max-width:375px),(max-width:768px),(max-width:1200px){
+    .section{
+        max-width: 100%;
+    }
+    .section__Clock{
+        font-size:13vw;
+        padding-left:6vw;
+    }
+    .section__Date{
+        font-size:10vw;
+        text-align: center;
+    }
+    .section__Location{
+        max-width: 100%;
+        font-size:10vw;
+        text-align: center;
+    }
 }
