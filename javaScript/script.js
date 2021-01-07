@@ -65,7 +65,7 @@ const getLocation = () => {
                     })
         }
 
-    button.addEventListener ("click", () => {navigator.geolocation.getCurrentPosition(successCallBack,errorCallBack,options)})
+    button.addEventListener ("click", () => (navigator.geolocation.getCurrentPosition(successCallBack,errorCallBack,options)))
 } 
 
 getLocation() 
