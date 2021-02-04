@@ -54,7 +54,6 @@ const getLocation = () => {
              return response.json()
             })
                 .then(data => {  
-                    console.log(data)
                     const {country_code,state,suburb,address29,...userAddres} = data.address;   
                     location.innerText =  
                     (`${userAddres.city || userAddres.hamlet || userAddres.county}, ul ${userAddres.city_district || userAddres.neighbourhood || userAddres.road }, ${userAddres.country}`)
