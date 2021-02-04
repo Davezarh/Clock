@@ -47,7 +47,7 @@
     flex-shrink:2;
     order:-1;
 }
-@media(max-width:375px),(max-width:768px),(max-width:1200px){
+@media(max-width:375px),(max-width:768px){
     .section{
         max-width: 100%;
     }
@@ -70,5 +70,15 @@
             letter-spacing: 3px;
             word-break: break-word;
         }
+    }
+}
+@media(min-width:769px) and (max-width:1024px){
+    .section{
+        max-width:75%
+    }
+}
+@media(min-width:1025px) and (max-width:1200px){
+    .section{
+        max-width:65%
     }
 }
