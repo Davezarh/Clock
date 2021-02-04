@@ -42,10 +42,11 @@ const getLocation = () => {
         }
 
     const successCallBack = (position) => {
+        
         const latitude = position.coords.latitude;
         const longtiude = position.coords.longitude;
-
-        fetch(`https://eu1.locationiq.com/v1/reverse.php?key=pk.5d92a33884eeadee31093ffee72e312b&lat=${latitude}&lon=${longtiude}&format=json`)
+        const baseURL = `https://eu1.locationiq.com/v1/reverse.php?key=pk.5d92a33884eeadee31093ffee72e312b&lat=${latitude}&lon=${longtiude}&format=json`
+        fetch(baseURL)
             .then(response => {
                 if(!response.ok){
                 throw new Error(response.status)
@@ -53,9 +54,10 @@ const getLocation = () => {
              return response.json()
             })
                 .then(data => {  
-                    const {country_code,state,suburb,county,address29,...userAddres} = data.address;   
+                    console.log(data)
+                    const {country_code,state,suburb,address29,...userAddres} = data.address;   
                     location.innerText =  
-                    (`${userAddres.city || userAddres.hamlet}, ul ${userAddres.city_district || userAddres.neighbourhood || userAddres.road }, ${userAddres.country}`)
+                    (`${userAddres.city || userAddres.hamlet || userAddres.county}, ul ${userAddres.city_district || userAddres.neighbourhood || userAddres.road }, ${userAddres.country}`)
                     button.remove()
                  })
                     .catch(error => {                                                                  
